@@ -59,5 +59,3 @@ and log in with password=instance-id
     watch -n0.1 nvidia-smi
 
 9
-
-    
