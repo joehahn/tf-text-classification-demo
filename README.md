@@ -38,7 +38,26 @@ following assumes the ssh private key is stored in private/dl.pem:
     chmod 400 private/dl.pem
     ssh -i private/dl.pem ubuntu@ec2-54-190-198-117.us-west-2.compute.amazonaws.com
 
-4 Update locate:
+
+5 install anaconda python
+
+    wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
+    chmod +x ./Miniconda2-latest-Linux-x86_64.sh
+    rm -rf ~/miniconda2
+    ./Miniconda2-latest-Linux-x86_64.sh -b -p ~/miniconda2
+    rm Miniconda2-latest-Linux-x86_64.sh
+
+6 install additional python packages
+
+
+    /home/$USER/miniconda2/bin/conda install -y matplotlib
+    /home/$USER/miniconda2/bin/conda install -y seaborn
+    /home/$USER/miniconda2/bin/conda install -y jupyter
+    /home/$USER/miniconda2/bin/conda install -y lxml
+    /home/$USER/miniconda2/bin/conda install -y BeautifulSoup4
+    /home/$USER/miniconda2/bin/conda install -y keras
+
+4 Update locate database:
 
     sudo updatedb
 
@@ -48,11 +67,15 @@ following assumes the ssh private key is stored in private/dl.pem:
 
 6 Start jupyter:
 
-    sudo jupyter notebook --allow-root
+    /home/$USER/miniconda2/bin/jupyter notebook
+
+Note: to view the bitfusion-provided notebooks, sudo the above
 
 7 Browse jupyter at public_IP:8888 ie
 
     ec2-54-190-198-117.us-west-2.compute.amazonaws.com:8888
+
+8 kernel > Change kernel > Python 2 or 3
 
 8 Train a CNN on CIFAR-10 images:
 
