@@ -16,8 +16,8 @@ gpus...in progress...
 
 1 Clone this repo:
 
-    git clone https://github.com/joehahn/epi_int_lite.git
-    cd epi_int_lite
+    git clone https://github.com/joehahn/dl.git
+    cd dl
 
 2 Launch a g2.2xl EC2 instance in AWS via recipe detailed in  
 https://hackernoon.com/keras-with-gpu-on-amazon-ec2-a-step-by-step-instruction-4f90364e49ac
@@ -29,13 +29,14 @@ using these settings:
     security group settings:
         set SSH and TCP entries to have Source=My IP (this enables ssh and jupyter)
         add custom inbound & outbound TCP rule, port=6006, Source=My IP (to enable tensorboard)
-    choose keypair
+    create keypair dl.pem
     Launch
 
 3 Get the public IP address from the EC2 console, then ssh into the instance ..the 
-following assumes my ssh key is stored in folder 'private':
+following assumes the ssh private key is stored in folder 'private':
 
-    ssh -i private/datasci.pem ec2-35-165-98-17.us-west-2.compute.amazonaws.com
+    chmod 400 private/dl.pem
+    ssh -i private/dl.pem ubuntu@ec2-54-191-20-191.us-west-2.compute.amazonaws.com
 
 4 Get instance ID:
 
@@ -47,7 +48,7 @@ following assumes my ssh key is stored in folder 'private':
 
 6 Browse jupyter at public_IP:8888 ie
 
-    ec2-35-165-98-17.us-west-2.compute.amazonaws.com:8888
+    ec2-54-191-20-191.us-west-2.compute.amazonaws.com:8888
 
 and log in with password=instance-id
 
