@@ -28,38 +28,52 @@ using these settings:
     set tag Name=dl
     security group settings:
         set SSH and TCP entries to have Source=My IP (this enables ssh and jupyter)
-        add custom inbound & outbound TCP rule, port=6006, Source=My IP (to enable tensorboard)
+        add custom TCP rule, port=6006, Source=My IP (to enable tensorboard)
     create keypair dl.pem
     Launch
 
-3 Get the public IP address from the EC2 console, then ssh into the instance ..the 
-following assumes the ssh private key is stored in folder 'private':
+3 Get the public IP address from the EC2 console, then ssh into the instance. The 
+following assumes the ssh private key is stored in private/dl.pem:
 
     chmod 400 private/dl.pem
-    ssh -i private/dl.pem ubuntu@ec2-54-191-20-191.us-west-2.compute.amazonaws.com
+    ssh -i private/dl.pem ubuntu@ec2-54-190-198-117.us-west-2.compute.amazonaws.com
 
-4 Get instance ID:
+4 Update locate:
+
+    sudo updatedb
+
+5 Get instance ID:
 
     ec2metadata --instance-id
 
-5 Start jupyter:
+6 Start jupyter:
 
-    sudo jupyter notebook 
+    sudo jupyter notebook --allow-root
 
-6 Browse jupyter at public_IP:8888 ie
+7 Browse jupyter at public_IP:8888 ie
 
-    ec2-54-191-20-191.us-west-2.compute.amazonaws.com:8888
+    ec2-54-190-198-117.us-west-2.compute.amazonaws.com:8888
+
+8 Train a CNN on CIFAR-10 images:
+
+    cd ~/tensorflow-models/tutorials/image/cifar10
+    python ./cifar10_multi_gpu_train.py
+
+9 start tensorboard:
+
+    cd ~/tensorflow-models/tutorials/image/cifar10
+    tensorboard --logdir .
+
+then browse
+
+    ec2-54-190-198-117.us-west-2.compute.amazonaws.com:6006
 
 and log in with password=instance-id
 
-7 Train CNN on CIFAR-10 images:
-
-    python ~/tensorflow-models/tutorials/image/cifar10/cifar10_multi_gpu_train.py
-
-8 Monitor GPU usage:
+10 Monitor GPU usage:
 
     watch -n0.1 nvidia-smi
 
-9
+11
 
 
