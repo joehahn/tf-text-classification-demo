@@ -24,7 +24,7 @@ https://hackernoon.com/keras-with-gpu-on-amazon-ec2-a-step-by-step-instruction-4
 using these settings:
 
     EC2 > launch instance > Community AMIs
-    search for 'Bitfusion Ubuntu TensorFlow' > g2.2xlarge ($2.86/hr)
+    search for 'Bitfusion Ubuntu TensorFlow' > g2.2xlarge ($0.76/hr)
     set tag Name=dl
     security group settings:
         set SSH and TCP entries to have Source=My IP (this enables ssh and jupyter)
@@ -97,6 +97,8 @@ and log in with password=instance-id
 
     watch -n0.1 nvidia-smi
 
-11
+11 use opencl to get extract gpu details
 
+    /home/$USER/miniconda2/bin/conda install -y -c conda-forge pyopencl
+    /home/$USER/miniconda2/bin/ipython
 
