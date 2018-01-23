@@ -29,7 +29,7 @@ def read_nyse_data(data_path, start_date=None, end_date=None, drop_holidays=None
         idx = (df['date'] >= start_date)
         df = df[idx]
     if (end_date):
-        idx = (df['date'] <= end_date_date)
+        idx = (df['date'] <= end_date)
         df = df[idx]
     if (drop_holidays):
         daily_volume = df.groupby('date')['vol'].sum()
