@@ -14,68 +14,65 @@ gpus...in progress...
 
 ### Setup:
 
-1 Clone this repo:
 
-    git clone https://github.com/joehahn/dl.git
-    cd dl
-
-2 Launch a g2.2xl EC2 instance in AWS via recipe detailed in  
-https://hackernoon.com/keras-with-gpu-on-amazon-ec2-a-step-by-step-instruction-4f90364e49ac
-using these settings:
+1 Launch a g2.2xl EC2 instance in AWS using these settings:
 
     EC2 > launch instance > Community AMIs
     search for 'Bitfusion Ubuntu TensorFlow' > g2.2xlarge ($0.76/hr)
     set tag Name=dl
     security group settings:
-        set SSH and TCP entries to have Source=My IP (this enables ssh and jupyter)
-        add custom TCP rule, port=6006, Source=My IP (to enable tensorboard)
-    create keypair dl.pem
+        set SSH and TCP entries to have Source=My IP         #this permits ssh and jupyter
+        add custom TCP rule, port=6006, Source=My IP         #this permits tensorboard
+    create keypair with name=dl2
     Launch
 
-3 Get the public IP address from the EC2 console, then ssh into the instance. The 
-following assumes the ssh private key is stored in private/dl.pem:
+2 store private ssh key tf-demo.pem in subfolder 'private' with these permissions:
 
-    chmod 400 private/dl.pem
-    ssh -i private/dl.pem ubuntu@ec2-54-190-198-117.us-west-2.compute.amazonaws.com
+    chmod 400 private/dl2.pem
 
+3 obtain the instance's public IP address from the EC2 console, and then ssh into the instance:
 
-5 install anaconda python
+    ssh -i private/dl2.pem ubuntu@ec2-54-203-124-227.us-west-2.compute.amazonaws.com
 
-    wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
-    chmod +x ./Miniconda2-latest-Linux-x86_64.sh
-    rm -rf ~/miniconda2
-    ./Miniconda2-latest-Linux-x86_64.sh -b -p ~/miniconda2
-    rm Miniconda2-latest-Linux-x86_64.sh
+4 clone this repo:
 
-6 install additional python packages
+    git clone https://github.com/joehahn/dl.git
+    cd dl
+    mkdir data
 
+5 purchase 5 years of NYSE data from eoddata.com, and store that data in desktop's 'data' folder
 
-    /home/$USER/miniconda2/bin/conda install -y matplotlib
-    /home/$USER/miniconda2/bin/conda install -y seaborn
-    /home/$USER/miniconda2/bin/conda install -y jupyter
-    /home/$USER/miniconda2/bin/conda install -y lxml
-    /home/$USER/miniconda2/bin/conda install -y BeautifulSoup4
-    /home/$USER/miniconda2/bin/conda install -y keras
+6 use scp on desktop to upload data to aws instance
 
-4 Update locate database:
+    scp -i private/dl2.pem data/*.zip  ubuntu@ec2-54-203-124-227.us-west-2.compute.amazonaws.com:/home/ubuntu/dl/data
+    
+7 install additional python libraries
+
+    sudo pip install seaborn
+
+8 update locate database:
 
     sudo updatedb
 
-5 Get instance ID:
+9 get instance-id:
 
     ec2metadata --instance-id
 
-6 Start jupyter:
+10 change this line in ~/.jupyter/jupyter_notebook_config.py, so Jupyter stores its notebooks in dl:
 
-    /home/$USER/miniconda2/bin/jupyter notebook
+    c.NotebookApp.notebook_dir = u'/home/ubuntu/dl'
 
-Note: to view the bitfusion-provided notebooks, sudo the above
+11 start jupyter:
 
-7 Browse jupyter at public_IP:8888 ie
+    jupyter notebook
 
-    ec2-54-190-198-117.us-west-2.compute.amazonaws.com:8888
+12 browse jupyter at public_IP:8888 and log in with password=instance-id
 
-8 kernel > Change kernel > Python 2 or 3
+    ec2-54-203-124-227.us-west-2.compute.amazonaws.com:8888
+
+
+
+
 
 8 Train a CNN on CIFAR-10 images:
 
@@ -97,8 +94,5 @@ and log in with password=instance-id
 
     watch -n0.1 nvidia-smi
 
-11 use opencl to get extract gpu details
 
-    /home/$USER/miniconda2/bin/conda install -y -c conda-forge pyopencl
-    /home/$USER/miniconda2/bin/ipython
 
