@@ -10,7 +10,7 @@
 import pandas as pd
 
 #read NYSE data into pandas dataframe
-def read_nyse_data(data_path, start_date=None, end_date=None):
+def read_nyse_data(data_path, start_date=None, end_date=None, drop_holidays=None):
     import glob
     files = glob.glob(data_path + '/*.txt')
     dataframes = []
@@ -31,4 +31,10 @@ def read_nyse_data(data_path, start_date=None, end_date=None):
     if (end_date):
         idx = (df['date'] <= end_date_date)
         df = df[idx]
+    if (drop_holidays):
+        volume_daily = df.groupby('date')['vol'].sum()
+        idx = (volume_daily > 0)
+        df = df[idx]
     return df
+
+
