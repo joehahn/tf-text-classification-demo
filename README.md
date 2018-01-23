@@ -45,6 +45,10 @@ gpus...in progress...
 6 use scp on desktop to upload data to aws instance
 
     scp -i private/dl2.pem data/*.zip  ubuntu@ec2-54-203-124-227.us-west-2.compute.amazonaws.com:/home/ubuntu/dl/data
+
+7 unpack data on the EC2 instance:
+
+    unzip 'data/NYSE*.zip' -d data
     
 7 install additional python libraries
 
