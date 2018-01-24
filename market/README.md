@@ -41,12 +41,9 @@ this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memo
 
     git clone https://github.com/joehahn/dl.git
     cd dl
-
-5 download all English books that are available project Gutenberg:
-
     mkdir data
-    cd data
-    wget -w 2 -m http://www.gutenberg.org/robot/harvest?filetypes[]=txt&langs[]=en
+
+5 purchase 5 years of NYSE data from eoddata.com, and store that data in desktop's 'data' folder
 
 6 use scp on desktop to upload data to aws instance
 
