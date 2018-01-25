@@ -52,7 +52,7 @@ for file in files:
                             title = title.replace("'s ", "").replace("*", "").replace("This  created", "")
                             title = title.replace('\n', '').strip('of ').strip(',').strip(' ')
                             title = title.replace("[#1 in our series is the Complete Works of Shakespeare,as presented to use", "")
-                            title = title.replace("Edition of ", "")
+                            title = title.replace("Edition of ", "").replace('"', '')
                             #print ('s = ' + s)
                             print ('title = ' + title)
                             print ('author = ' + author)
@@ -60,7 +60,7 @@ for file in files:
                             N_sentences = len(middle_sentences)
                             d = {'input_file':file, 'author':author, 'title':title, 'N_sentences':N_sentences}
                             middle_sentences += [d]
-                            output_file = 'data/parsed/' + title + '---' + author + '.' + str(N_sentences) + '.pkl'
+                            output_file = 'data/parsed/' + author + '--' + str(N_sentences) + '--' + title  + '.pkl'
                             with open(output_file, 'wb') as fp:
                                 pickle.dump(middle_sentences, fp)
                             print ('output_file = ' + output_file)
