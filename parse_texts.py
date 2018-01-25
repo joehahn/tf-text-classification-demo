@@ -97,14 +97,14 @@ for file in files:
     try:
         with open(file) as fp:
             raw_text = fp.read()
-        ###print '===='
-        ###print 'file = ', file
+        print '===='
+        print 'file = ', file
         #drop accented characters by preserving alphanumerics plus simple punctuation 
         regex_str = '[^a-zA-Z0-9\n\.\,!\$\'`\"()#%&+-=:;<>{}\[\]]'
         filtered_text = re.sub(regex_str, ' ', raw_text.replace('\r\n', ' ')).replace('  ', ' ')
         sentences = nltk.sent_tokenize(filtered_text)
         N_sentences = len(sentences)
-        ###print 'N_sentences = ', str(N_sentences)
+        print 'N_sentences = ', str(N_sentences)
         if (N_sentences > 100):
             last_sentences = sentences[-5:]
             for s in last_sentences:
@@ -160,7 +160,7 @@ for file in files:
                                 title = 'Beauty and the Beast'
                             #print 's = ', s
                             print 'title = ', title
-                            ###print 'author = ', author
+                            print 'author = ', author
                             #drop first 20% and last 10% of sentences, to avoid gutenberg boilerplate text
                             middle_sentences = sentences[int(N_sentences/10) : int(0.9*N_sentences)]
                             N_sentences = len(middle_sentences)
