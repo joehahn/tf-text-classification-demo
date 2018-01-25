@@ -126,9 +126,20 @@ for file in files:
                             title = title.replace("Edition of ", "").replace('"', '')
                             title = title.replace('in our series', '')
                             title = title.replace('[There are many other eBooks', '')
+                            title = title.replace('The One Volume Edition #12', '')
                             title = title.strip('EBook of ')
                             if ('Twenty Thousand Leagues Under the Sea' in title):
                                 title = 'Twenty Thousand Leagues Under the Sea'
+                            if ('ssay on Man' in title):
+                                title = 'Essay on Man'
+                            if ('lack Beauty' in title):
+                                title = 'Black Beauty'
+                            if ('ngland Under the Tudors' in title):
+                                title = 'England Under the Tudors'
+                            if ('The Lives Of The Twelve Caesars' in title):
+                                title = 'The Lives Of The Twelve Caesars'
+                            if ('leak House' in title):
+                                title = 'leak House'
                             #print 's = ', s
                             print 'title = ', title
                             ###print 'author = ', author
