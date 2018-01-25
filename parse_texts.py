@@ -92,6 +92,7 @@ nltk.download(info_or_id='punkt')
 import nltk.data
 tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
 import re
+import random
 books_list = []
 for file in files:
     try:
@@ -104,7 +105,6 @@ for file in files:
         filtered_text = re.sub(regex_str, ' ', raw_text.replace('\r\n', ' ')).replace('  ', ' ')
         sentences = nltk.sent_tokenize(filtered_text)
         N_sentences = len(sentences)
-        print 'N_sentences = ', str(N_sentences)
         if (N_sentences > 100):
             last_sentences = sentences[-5:]
             for s in last_sentences:
@@ -163,9 +163,14 @@ for file in files:
                             print 'author = ', author
                             #drop first 20% and last 10% of sentences, to avoid gutenberg boilerplate text
                             middle_sentences = sentences[int(N_sentences/10) : int(0.9*N_sentences)]
+                            #preserve up to 3000 random sentences
                             N_sentences = len(middle_sentences)
+                            if (N_sentences > 3000):
+                                N_sentences = 3000
+                            print 'N_sentences = ', N_sentences
+                            random_sentences = random.sample(middle_sentences, N_sentences)
                             d = {'input_file':file, 'author':author, 'title':title,
-                                'N_sentences':N_sentences, 'sentences':middle_sentences}
+                                'N_sentences':N_sentences, 'sentences':random_sentences}
                             middle_sentences += [d]
                             books_list += [d]
     except:
@@ -175,7 +180,13 @@ for file in files:
 import pandas as pd
 cols = ['author', 'title', 'N_sentences', 'input_file', 'sentences']
 books = pd.DataFrame(books_list)[cols]
+
+#preserve books having at least 1000 sentences
+idx = books['N_sentences'] > 1000
+books = books[idx]
 print 'number of parsed books = ', len(books)
+
+#save books
 import pickle
 with open('books.pkl', 'wb') as fp:
     pickle.dump(books, fp)
