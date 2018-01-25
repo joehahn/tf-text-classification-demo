@@ -7,18 +7,23 @@
 #this parses Gutenberg project books stored in data, extracts the title and author
 #when possible (succeeds about 33% of time)
 #
-#To execute:    python2 ./parse_texts.sh
+#To execute:    python3 ./parse_texts.sh
 
 #get list of files
 import subprocess
 files = subprocess.check_output(['find', 'data', '-name', '*.txt']).decode('utf8').split('\n')
 print ('approx number of books downloaded= ' + str(len(files)))
 
+#refresh storage directory
+import os
+os.system('rm -rf data/parsed; mkdir data/parsed')
+
 #loop over every file and extract title & author...this requires python3
 import nltk
 nltk.download(info_or_id='punkt')
 import nltk.data
 tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
+import pickle
 books = []
 for file in files:
     try:
@@ -51,7 +56,13 @@ for file in files:
                             #print ('s = ' + s)
                             print ('title = ' + title)
                             print ('author = ' + author)
+                            middle_sentences = sentences[int(N_sentences/10) : int(0.9*N_sentences)]
+                            N_sentences = len(middle_sentences)
                             d = {'input_file':file, 'author':author, 'title':title, 'N_sentences':N_sentences}
+                            middle_sentences += [d]
+                            out_file = 'data/parsed/' + author + '-' + title + '.pkl'
+                            with open(out_file, 'wb') as fp:
+                                pickle.dump(middle_sentences, fp)
                             books += [d]
                             break
     except:
