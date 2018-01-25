@@ -140,6 +140,18 @@ for file in files:
                                 title = 'The Lives Of The Twelve Caesars'
                             if ('leak House' in title):
                                 title = 'leak House'
+                            if ('Myths And Legends Of Our Own Land' in title):
+                                title = 'Myths And Legends Of Our Own Land'
+                            if ('The Tragical History of Dr. Faustus' in title):
+                                title = 'The Tragical History of Dr. Faustus'
+                            if ('Messer Marco Pol' in title):
+                                title = 'Messer Marco Polo'
+                            if ('The Count of Monte Crist' in title):
+                                title = 'The Count of Monte Cristo'
+                            if ('The Kalevala' in title):
+                                title = 'The Kalevala'
+                            if ('Dot and the Kangaroo' in title):
+                                title = 'Dot and the Kangaroo'
                             #print 's = ', s
                             print 'title = ', title
                             ###print 'author = ', author
