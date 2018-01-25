@@ -4,47 +4,108 @@
 #jmh.datasciences@gmail.com
 #24 January 2019
 #
-#this parses Gutenberg project books stored in data, extracts the title and author
-#when possible (succeeds about 33% of time)
+#this hack parses Gutenberg project books stored in data folder and extracts title, author, & content
 #
-#To execute:    python3 ./parse_texts.py
+#To execute:    python2 ./parse_texts.py
 
 #get list of files
 import subprocess
-files = subprocess.check_output(['find', 'iso', '-name', '*.txt']).decode('utf8').split('\n')
-print ('approx number of books downloaded= ' + str(len(files)))
+files = subprocess.check_output(['find', 'iso', '-name', '*.txt']).decode('utf8').split('\n')[0:-1]
+print 'approx number of books downloaded = ', len(files)
 
-#refresh storage directory
-import os
-os.system('rm -rf data; mkdir data')
+#this helper function is used below
+def find_author(sentence):
+    s_split = sentence.split('by ')
+    author = s_split[-1].replace("\n", "").replace("\r", "").strip('.')
+    author = author.replace('July 4th, 1994', ' ').replace("Second Series", " ")\
+        .replace('<toqyam@os.st.rim.or.jp>', ' ').replace('END OF PART III', ' ')\
+        .replace("PG has multiple editions of William Shakespeare's Complete Works", ' ')\
+        .replace("Copyright laws are changing all over the world, be sure to check the copyright laws for your country before posting these files!!", ' ')
+    author = author.replace('Copyright laws are changing all over the world, be sure to check the laws for your country before redistributing these files!!!', '')
+    author = author.replace(', be sure to check the copyright laws for your country before posting these files!', ' ')
+    author = author.replace('Copyright laws are changing all over the world', '')
+    author = author.replace('Please take a look at the important information in this header', '')
+    author = author.replace('in our series', '')
+    author = author.replace(' in the PG catalog]', '')
+    author = author.replace('Available as 7-bit version 7rbaa10', '')
+    author = author.replace('[Volume II]', '')
+    #author = author.strip(' in English')
+    #author = author.strip(' French without accents')
+    author = author.strip(' ').strip(',').strip(' ')
+    author = author.strip(' ').strip(')').strip(' ')
+    author = author.strip(' ').strip(']').strip(' ')
+    author = author.strip(' ').strip('"').strip(' ')
+    author = author.strip(' ').strip('.').strip(' ')
+    author = author.strip(' ').strip('(coll').strip(' ')
+    if ('Various' in author):
+        author = 'Various'
+    if ('Richard F. Burton' in author):
+        author = 'Richard F. Burton'
+    if ('Burroughs' in author):
+        author = 'Burroughs'
+    if ('Xenophon' in author):
+        author = 'Xenophon'
+    if ('Stephen Crane' in author):
+        author = 'Stephen Crane'
+    if ('L. Frank Baum' in author):
+        author = 'L. Frank Baum'
+    if ('Sherwood Anderson' in author):
+        author = 'Sherwood Anderson'
+    if ('Mark Twain' in author):
+        author = 'Mark Twain'
+    if ('Christopher Marlowe' in author):
+        author = 'Christopher Marlowe'
+    if ('Christoper Marlowe' in author):
+        author = 'Christopher Marlowe'
+    if ('Lord Dunsany' in author):
+        author = 'Lord Dunsany'
+    if ('William S. Gilbert' in author):
+        author = 'William S. Gilbert'
+    if ('Saxo Grammaticus' in author):
+        author = 'Saxo Grammaticus'
+    if ('Tokuya Matsumoto' in author):
+        author = 'Tokuya Matsumoto'
+    if ('Samuel Johnson' in author):
+        author = 'Samuel Johnson'
+    if ('Edmond Rostand' in author):
+        author = 'Edmond Rostand'
+    if ('Dumas' in author):
+        author = 'Dumas'
+    #if ('Defoe' in author):
+    #    author = 'Daniel Defoe' 
+    title_str = s_split[:-1]
+    return author, title_str
 
 #loop over every file and extract title & author
 import nltk
 nltk.download(info_or_id='punkt')
 import nltk.data
 tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
-import pickle
-books = []
+import re
+books_list = []
 for file in files:
     try:
         with open(file) as fp:
             raw_text = fp.read()
-        print '===='
-        print 'file = ', file
-        sentences = nltk.sent_tokenize(raw_text)
+        ###print '===='
+        ###print 'file = ', file
+        #drop accented characters by preserving alphanumerics plus simple punctuation 
+        regex_str = '[^a-zA-Z0-9\n\.\,!\$\'`\"()#%&+-=:;<>{}\[\]]'
+        filtered_text = re.sub(regex_str, ' ', raw_text.replace('\r\n', ' ')).replace('  ', ' ')
+        sentences = nltk.sent_tokenize(filtered_text)
         N_sentences = len(sentences)
-        print 'N_sentences = ', str(N_sentences)
-        if (N_sentences > 1000):
+        ###print 'N_sentences = ', str(N_sentences)
+        if (N_sentences > 100):
             last_sentences = sentences[-5:]
             for s in last_sentences:
                 if ('project gutenberg' in s.lower()):
-                    s_split = s.split('by ')
-                    author = s_split[-1].replace("\n", "").replace("\r", "").strip('.').replace('*', '')
-                    author = author.replace('July 4th, 1994', ' ').replace("Second Series", " ")\
-                        .replace('<toqyam@os.st.rim.or.jp>', ' ').replace('END OF PART III', ' ')\
-                        .replace("PG has multiple editions of William Shakespeare's Complete Works", ' ')
-                    author = author.strip(' ').strip(',').replace('"', '')
-                    title_str = s_split[:-1]
+                    if ('by ' in s.lower()):
+                        author, title_str = find_author(s)
+                    elif ('by ' in sentences[0].lower()):
+                        author, title_str = find_author(sentences[0])
+                    else:
+                        author = 'Project Gutenberg'
+                        title_str = [s]
                     for t in title_str:
                         if ('project gutenberg' in t.lower()):
                             title = t.split('Project Gutenberg')[-1].replace('Etext', '')\
@@ -53,19 +114,29 @@ for file in files:
                             title = title.replace('\n', '').replace('\r', '').strip('of ').strip(',').strip(' ')
                             title = title.replace("[#1 in our series is the Complete Works of Shakespeare,as presented to use", "")
                             title = title.replace("Edition of ", "").replace('"', '')
+                            title = title.replace('in our series', '')
+                            title = title.replace('[There are many other eBooks', '')
+                            title = title.strip('EBook of ')
+                            if ('Twenty Thousand Leagues Under the Sea' in title):
+                                title = 'Twenty Thousand Leagues Under the Sea'
                             #print 's = ', s
-                            print 'title = ', title
+                            ###print 'title = ', title
                             print 'author = ', author
+                            #drop first 20% and last 10% of sentences, to avoid gutenberg boilerplate text
                             middle_sentences = sentences[int(N_sentences/10) : int(0.9*N_sentences)]
                             N_sentences = len(middle_sentences)
-                            d = {'input_file':file, 'author':author, 'title':title, 'N_sentences':N_sentences}
+                            d = {'input_file':file, 'author':author, 'title':title,
+                                'N_sentences':N_sentences, 'sentences':middle_sentences}
                             middle_sentences += [d]
-                            output_file = 'data/' + author + '--' + str(N_sentences) + '--' + title  + '.pkl'
-                            with open(output_file, 'wb') as fp:
-                                pickle.dump(middle_sentences, fp)
-                            print 'output_file = ', output_file
-                            books += [d]
+                            books_list += [d]
     except:
         pass
-print 'number of parsed books = ', len(books)
 
+#save dataframe of books
+import pandas as pd
+cols = ['author', 'title', 'N_sentences', 'input_file', 'sentences']
+books = pd.DataFrame(books_list)[cols]
+print 'number of parsed books = ', len(books)
+import pickle
+with open('books.pkl', 'wb') as fp:
+    pickle.dump(books, fp)
