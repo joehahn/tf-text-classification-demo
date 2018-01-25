@@ -42,7 +42,11 @@ this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memo
     git clone https://github.com/joehahn/dl.git
     cd dl
 
-5 download an ISO CD of 600 Project Gutenberg books (takes ~5 minutes), and mount:
+5 install additional python libraries
+
+    sudo pip install seaborn
+
+6 download an ISO CD of 600 Project Gutenberg books (takes ~3 minutes), then mount:
 
     wget http://www.gutenberg.org/files/11220/PG2003-08.ISO
     mkdir iso
@@ -51,12 +55,9 @@ this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memo
 
 6 parse the input books:
 
-    python3 ./parse_texts.py
+    python2 ./parse_texts.py
 
 
-7 install additional python libraries
-
-    sudo pip install seaborn
 
 8 update locate database:
 
