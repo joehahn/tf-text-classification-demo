@@ -65,7 +65,6 @@ for file in files:
                                 pickle.dump(middle_sentences, fp)
                             print ('output_file = ' + output_file)
                             books += [d]
-                            break
     except:
         pass
 print ('number of parsed books = ' + str(len(books)))
