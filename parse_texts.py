@@ -71,8 +71,8 @@ def find_author(sentence):
         author = 'Edmond Rostand'
     if ('Dumas' in author):
         author = 'Dumas'
-    #if ('Defoe' in author):
-    #    author = 'Daniel Defoe' 
+    if ('Defoe' in author):
+        author = 'Daniel Defoe' 
     title_str = s_split[:-1]
     return author, title_str
 
