@@ -18,7 +18,7 @@ print ('approx number of books downloaded= ' + str(len(files)))
 import os
 os.system('rm -rf data; mkdir data')
 
-#loop over every file and extract title & author...this requires python3
+#loop over every file and extract title & author
 import nltk
 nltk.download(info_or_id='punkt')
 import nltk.data
@@ -29,17 +29,17 @@ for file in files:
     try:
         with open(file) as fp:
             raw_text = fp.read()
-        print ('====')
-        print ('file = ' + file)
+        print '===='
+        print 'file = ', file
         sentences = nltk.sent_tokenize(raw_text)
         N_sentences = len(sentences)
-        print ('N_sentences = ' +  str(N_sentences))
+        print 'N_sentences = ', str(N_sentences)
         if (N_sentences > 1000):
             last_sentences = sentences[-5:]
             for s in last_sentences:
                 if ('project gutenberg' in s.lower()):
                     s_split = s.split('by ')
-                    author = s_split[-1].replace("\n", "").strip('.').replace('*', '')
+                    author = s_split[-1].replace("\n", "").replace("\r", "").strip('.').replace('*', '')
                     author = author.replace('July 4th, 1994', ' ').replace("Second Series", " ")\
                         .replace('<toqyam@os.st.rim.or.jp>', ' ').replace('END OF PART III', ' ')\
                         .replace("PG has multiple editions of William Shakespeare's Complete Works", ' ')
@@ -50,12 +50,12 @@ for file in files:
                             title = t.split('Project Gutenberg')[-1].replace('Etext', '')\
                                 .replace('etext', '').replace('e-text of', '').replace('eText of', '')
                             title = title.replace("'s ", "").replace("*", "").replace("This  created", "")
-                            title = title.replace('\n', '').strip('of ').strip(',').strip(' ')
+                            title = title.replace('\n', '').replace('\r', '').strip('of ').strip(',').strip(' ')
                             title = title.replace("[#1 in our series is the Complete Works of Shakespeare,as presented to use", "")
                             title = title.replace("Edition of ", "").replace('"', '')
-                            #print ('s = ' + s)
-                            print ('title = ' + title)
-                            print ('author = ' + author)
+                            #print 's = ', s
+                            print 'title = ', title
+                            print 'author = ', author
                             middle_sentences = sentences[int(N_sentences/10) : int(0.9*N_sentences)]
                             N_sentences = len(middle_sentences)
                             d = {'input_file':file, 'author':author, 'title':title, 'N_sentences':N_sentences}
@@ -63,9 +63,9 @@ for file in files:
                             output_file = 'data/' + author + '--' + str(N_sentences) + '--' + title  + '.pkl'
                             with open(output_file, 'wb') as fp:
                                 pickle.dump(middle_sentences, fp)
-                            print ('output_file = ' + output_file)
+                            print 'output_file = ', output_file
                             books += [d]
     except:
         pass
-print ('number of parsed books = ' + str(len(books)))
+print 'number of parsed books = ', len(books)
 

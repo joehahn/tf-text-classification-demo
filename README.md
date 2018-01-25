@@ -53,14 +53,6 @@ this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memo
     python3 ./parse_texts.py
 
 
-6 use scp on desktop to upload data to aws instance
-
-    scp -i private/dl.pem data/*.zip ec2-34-214-48-120.us-west-2.compute.amazonaws.com:/home/ubuntu/dl/data
-
-7 unpack data on the EC2 instance:
-
-    unzip 'data/NYSE*.zip' -d data
-    
 7 install additional python libraries
 
     sudo pip install seaborn
