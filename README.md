@@ -42,11 +42,20 @@ this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memo
     git clone https://github.com/joehahn/dl.git
     cd dl
 
-5 download all English books that are available project Gutenberg:
+5 download a .iso CD of 600 Project Gutenberg books in ~5 minutes:
 
     mkdir data
     cd data
-    wget -w 2 -m http://www.gutenberg.org/robot/harvest?filetypes[]=txt&langs[]=en
+    wget http://www.gutenberg.org/files/11220/PG2003-08.ISO
+
+6 mount the CD:
+
+    mkdir iso
+    sudo mount -o loop PG2003-08.ISO iso
+    ls -R iso
+
+
+
 
 6 use scp on desktop to upload data to aws instance
 
