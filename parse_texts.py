@@ -152,6 +152,12 @@ for file in files:
                                 title = 'The Kalevala'
                             if ('Dot and the Kangaroo' in title):
                                 title = 'Dot and the Kangaroo'
+                            if ('en-Hur: A Tale of the Christ' in title):
+                                title = 'Ben-Hur: A Tale of the Christ'
+                            if ('Sinking of the Titanic' in title):
+                                title = 'Sinking of the Titanic'
+                            if ('eauty and the Beast' in title):
+                                title = 'Beauty and the Beast'
                             #print 's = ', s
                             print 'title = ', title
                             ###print 'author = ', author
