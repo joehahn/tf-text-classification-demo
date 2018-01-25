@@ -29,8 +29,6 @@ def find_author(sentence):
     author = author.replace(' in the PG catalog]', '')
     author = author.replace('Available as 7-bit version 7rbaa10', '')
     author = author.replace('[Volume II]', '')
-    #author = author.strip(' in English')
-    #author = author.strip(' French without accents')
     author = author.strip(' ').strip(',').strip(' ')
     author = author.strip(' ').strip(')').strip(' ')
     author = author.strip(' ').strip(']').strip(' ')
@@ -72,7 +70,19 @@ def find_author(sentence):
     if ('Dumas' in author):
         author = 'Dumas'
     if ('Defoe' in author):
-        author = 'Daniel Defoe' 
+        author = 'Daniel Defoe'
+    if ('John Martin Crawford' in author):
+        author = 'John Martin Crawford'
+    if ('Joseph Conrad' in author):
+        author = 'Joseph Conrad'
+    if ('Leo Tolstoy' in author):
+        author = 'Leo Tolstoy'
+    if ('Conan Doyle' in author):
+        author = 'Author Conan Doyle'
+    if ('Huxley' in author):
+        author = 'Thomas H. Huxley'
+    if ('James M. Barrie' in author):
+        author = 'James M. Barrie'
     title_str = s_split[:-1]
     return author, title_str
 
@@ -120,8 +130,8 @@ for file in files:
                             if ('Twenty Thousand Leagues Under the Sea' in title):
                                 title = 'Twenty Thousand Leagues Under the Sea'
                             #print 's = ', s
-                            ###print 'title = ', title
-                            print 'author = ', author
+                            print 'title = ', title
+                            ###print 'author = ', author
                             #drop first 20% and last 10% of sentences, to avoid gutenberg boilerplate text
                             middle_sentences = sentences[int(N_sentences/10) : int(0.9*N_sentences)]
                             N_sentences = len(middle_sentences)
