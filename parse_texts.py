@@ -7,7 +7,7 @@
 #this parses Gutenberg project books stored in data, extracts the title and author
 #when possible (succeeds about 33% of time)
 #
-#To execute:    python3 ./parse_texts.sh
+#To execute:    python3 ./parse_texts.py
 
 #get list of files
 import subprocess
@@ -43,7 +43,7 @@ for file in files:
                     author = author.replace('July 4th, 1994', ' ').replace("Second Series", " ")\
                         .replace('<toqyam@os.st.rim.or.jp>', ' ').replace('END OF PART III', ' ')\
                         .replace("PG has multiple editions of William Shakespeare's Complete Works", ' ')
-                    author = author.strip(' ').strip(',')
+                    author = author.strip(' ').strip(',').replace('"', '')
                     title_str = s_split[:-1]
                     for t in title_str:
                         if ('project gutenberg' in t.lower()):
@@ -60,9 +60,10 @@ for file in files:
                             N_sentences = len(middle_sentences)
                             d = {'input_file':file, 'author':author, 'title':title, 'N_sentences':N_sentences}
                             middle_sentences += [d]
-                            out_file = 'data/parsed/' + author + '-' + title + '.pkl'
-                            with open(out_file, 'wb') as fp:
+                            output_file = 'data/parsed/' + title + '-' + author + '.pkl'
+                            with open(output_file, 'wb') as fp:
                                 pickle.dump(middle_sentences, fp)
+                            print ('output_file = ' + output_file)
                             books += [d]
                             break
     except:
