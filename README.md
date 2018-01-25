@@ -23,7 +23,7 @@ gpus...in progress...
     security group settings:
         set SSH and TCP entries to have Source=My IP         #this permits ssh and jupyter
         add custom TCP rule, port=6006, Source=My IP         #this permits tensorboard
-    create keypair with name=dl2
+    create keypair with name=dl
     Launch
 
 this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memory, 
@@ -31,27 +31,21 @@ this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memo
 
 2 store private ssh key tf-demo.pem in subfolder 'private' with these permissions:
 
-    chmod 400 private/dl2.pem
+    chmod 400 private/dl.pem
 
 3 obtain the instance's public IP address from the EC2 console, and then ssh into the instance:
 
-    ssh -i private/dl2.pem ubuntu@ec2-54-218-50-120.us-west-2.compute.amazonaws.com
+    ssh -i private/dl.pem ubuntu@ec2-34-214-48-120.us-west-2.compute.amazonaws.com
 
 4 clone this repo:
 
     git clone https://github.com/joehahn/dl.git
     cd dl
 
-5 download a .iso CD of 600 Project Gutenberg books in ~5 minutes:
-
-    mkdir data
-    cd data
+5 download a .iso CD of 600 Project Gutenberg books in ~5 minutes, and mount:
     wget http://www.gutenberg.org/files/11220/PG2003-08.ISO
-
-6 mount the CD:
-
     mkdir iso
-    sudo mount -o loop PG2003-08.ISO iso
+    sudo mount -ro loop PG2003-08.ISO iso
     ls -R iso
 
 6 parse the input books:
@@ -61,7 +55,7 @@ this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memo
 
 6 use scp on desktop to upload data to aws instance
 
-    scp -i private/dl2.pem data/*.zip  ubuntu@ec2-54-218-50-120.us-west-2.compute.amazonaws.com:/home/ubuntu/dl/data
+    scp -i private/dl.pem data/*.zip ec2-34-214-48-120.us-west-2.compute.amazonaws.com:/home/ubuntu/dl/data
 
 7 unpack data on the EC2 instance:
 
@@ -107,7 +101,7 @@ this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memo
 
 then browse
 
-    ec2-54-190-198-117.us-west-2.compute.amazonaws.com:6006
+    ec2-34-214-48-120.us-west-2.compute.amazonaws.com:6006
 
 and log in with password=instance-id
 

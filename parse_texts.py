@@ -11,12 +11,12 @@
 
 #get list of files
 import subprocess
-files = subprocess.check_output(['find', 'data', '-name', '*.txt']).decode('utf8').split('\n')
+files = subprocess.check_output(['find', 'iso', '-name', '*.txt']).decode('utf8').split('\n')
 print ('approx number of books downloaded= ' + str(len(files)))
 
 #refresh storage directory
 import os
-os.system('rm -rf data/parsed; mkdir data/parsed')
+os.system('rm -rf data; mkdir data')
 
 #loop over every file and extract title & author...this requires python3
 import nltk
@@ -60,7 +60,7 @@ for file in files:
                             N_sentences = len(middle_sentences)
                             d = {'input_file':file, 'author':author, 'title':title, 'N_sentences':N_sentences}
                             middle_sentences += [d]
-                            output_file = 'data/parsed/' + author + '--' + str(N_sentences) + '--' + title  + '.pkl'
+                            output_file = 'data/' + author + '--' + str(N_sentences) + '--' + title  + '.pkl'
                             with open(output_file, 'wb') as fp:
                                 pickle.dump(middle_sentences, fp)
                             print ('output_file = ' + output_file)
