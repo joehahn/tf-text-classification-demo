@@ -35,14 +35,15 @@ this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memo
 
 3 obtain the instance's public IP address from the EC2 console, and then ssh into the instance:
 
-    ssh -i private/dl.pem ubuntu@ec2-34-214-48-120.us-west-2.compute.amazonaws.com
+    ssh -i private/dl.pem ubuntu@ec2-34-216-102-120.us-west-2.compute.amazonaws.com
 
 4 clone this repo:
 
     git clone https://github.com/joehahn/dl.git
     cd dl
 
-5 download a .iso CD of 600 Project Gutenberg books in ~5 minutes, and mount:
+5 download an ISO CD of 600 Project Gutenberg books (takes ~5 minutes), and mount:
+
     wget http://www.gutenberg.org/files/11220/PG2003-08.ISO
     mkdir iso
     sudo mount -ro loop PG2003-08.ISO iso
@@ -75,7 +76,7 @@ this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memo
 
 12 browse jupyter at public_IP:8888 and log in with password=instance-id
 
-    ec2-54-218-50-120.us-west-2.compute.amazonaws.com:8888
+    ec2-34-216-102-120.us-west-2.compute.amazonaws.com:8888
 
 
 
