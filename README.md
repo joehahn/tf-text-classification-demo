@@ -45,6 +45,7 @@ this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memo
 5 install additional python libraries
 
     sudo pip install seaborn
+    sudo pip install gensim
 
 6 download an ISO CD of 600 Project Gutenberg books (takes ~3 minutes), then mount:
 
