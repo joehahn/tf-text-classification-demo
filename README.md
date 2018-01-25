@@ -54,7 +54,9 @@ this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memo
     sudo mount -o loop PG2003-08.ISO iso
     ls -R iso
 
+6 parse the input books:
 
+    python3 ./parse_texts.py
 
 
 6 use scp on desktop to upload data to aws instance

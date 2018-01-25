@@ -60,7 +60,7 @@ for file in files:
                             N_sentences = len(middle_sentences)
                             d = {'input_file':file, 'author':author, 'title':title, 'N_sentences':N_sentences}
                             middle_sentences += [d]
-                            output_file = 'data/parsed/' + title + '-' + author + '.pkl'
+                            output_file = 'data/parsed/' + title + '---' + author + '.' + str(N_sentences) + '.pkl'
                             with open(output_file, 'wb') as fp:
                                 pickle.dump(middle_sentences, fp)
                             print ('output_file = ' + output_file)
