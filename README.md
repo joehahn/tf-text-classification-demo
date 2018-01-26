@@ -64,13 +64,13 @@ this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memo
 
     sudo updatedb
 
-9 get instance-id:
-
-    ec2metadata --instance-id
-
-10 change this line in ~/.jupyter/jupyter_notebook_config.py, so Jupyter stores its notebooks in dl:
+9 change this line in ~/.jupyter/jupyter_notebook_config.py, so Jupyter stores its notebooks in dl:
 
     c.NotebookApp.notebook_dir = u'/home/ubuntu/dl'
+
+10 get instance-id:
+
+    ec2metadata --instance-id
 
 11 start jupyter:
 
