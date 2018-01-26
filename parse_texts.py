@@ -98,7 +98,7 @@ tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
 import re
 import random
 sentence_list = []
-for file in files[0:10]:
+for file in files:
     try:
         with open(file) as fp:
             raw_text = fp.read().decode('utf8')
