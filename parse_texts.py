@@ -6,7 +6,7 @@
 #
 #this hack parses Gutenberg project books stored in data folder and extracts title, author, & content
 #
-#To execute:    python2 ./parse_texts.py
+#To execute:    python ./parse_texts.py
 
 #get list of files
 import subprocess

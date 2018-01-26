@@ -56,7 +56,7 @@ this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memo
 
 6 parse the input books:
 
-    python2 ./parse_texts.py
+    python ./parse_texts.py
 
 
 
