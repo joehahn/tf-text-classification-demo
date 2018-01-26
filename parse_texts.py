@@ -85,6 +85,8 @@ def find_author(sentence):
         author = 'Thomas H. Huxley'
     if ('James M. Barrie' in author):
         author = 'James M. Barrie'
+    if ('Shakespeare' in author):
+        author = 'Shakespeare'
     title_str = s_split[:-1]
     return author, title_str
 
@@ -166,6 +168,10 @@ for file in files:
                             if ('The Memoirs of Napoleon' in title):
                                 title = 'The Memoirs of Napoleon'
                                 author = 'Louis Antoine Fauvelet de Bourrienne'
+                            if ('eethoven: the Man and the Artist as Revealed in his own Words' in title):
+                                title = 'Beethoven: the Man and the Artist as Revealed in his own Words'
+                            if ('Captain CookJournal During the First Voyage Round the World' in title):
+                                title = "Captain Cook's Journal During the First Voyage Round the World"
                             #print 's = ', s
                             print 'title = ', title
                             print 'author = ', author
