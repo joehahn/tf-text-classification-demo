@@ -163,7 +163,7 @@ for file in files:
                             if ('eauty and the Beast' in title):
                                 title = 'Beauty and the Beast'
                             if ('ShakespeareFirst Folio/35 Plays' in title):
-                                title = "aShakespeare's First Folio/35 Plays"
+                                title = "Shakespeare's First Folio/35 Plays"
                                 author = 'Shakespeare'
                             if ('The Memoirs of Napoleon' in title):
                                 title = 'The Memoirs of Napoleon'
