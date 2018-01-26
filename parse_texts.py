@@ -33,7 +33,7 @@ def get_author_title(sentence):
         author = author.strip('.')
         author = author.strip(' ')
         author = author.strip('*')
-        title = title.replace('ebook of ', '').replace('etext of ', '').replace('etext ', '').strip(' ').strip(',')
+        title = title.replace('ebook of ', '').replace('etext of ', '').replace('etext ', '').replace('ebook ', '').strip(' ').strip(',')
         if (title[0:3] == "'s "):
             title = title[3:]
         author = author.title()
