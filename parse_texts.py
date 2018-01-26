@@ -65,8 +65,8 @@ for file in files:
         sentences = nltk.sent_tokenize(modified_text)
         N_sentences = len(sentences)
         print 'N_sentences = ', N_sentences
-        #drop first 10% and last 5% of sentences that contain gutenberg boilerplate text
-        middle_sentences = sentences[int(N_sentences/10) : int(0.95*N_sentences)]
+        #drop first and last 15% of sentences that contain gutenberg boilerplate text
+        middle_sentences = sentences[int(0.15*N_sentences) : int(0.85*N_sentences)]
         #preserve up 1000-3000 random sentences
         N_sentences = len(middle_sentences)
         if (N_sentences > 1000):
