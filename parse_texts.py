@@ -98,7 +98,7 @@ tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
 import re
 import random
 sentence_list = []
-for file in files[0:20]:
+for file in files:
     try:
         with open(file) as fp:
             raw_text = fp.read().decode('utf8')
@@ -195,6 +195,7 @@ sentences = pd.DataFrame(sentence_list)
 print '===='
 print '===='
 print 'number of parsed sentences = ', len(sentences)
+print 'number of parsed books = ', len(sentences.groupby('input_file').count())
 
 #save sentences
 import pickle
