@@ -93,7 +93,7 @@ import nltk.data
 tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
 import re
 import random
-books_list = []
+sentence_list = []
 for file in files:
     try:
         with open(file) as fp:
@@ -169,24 +169,17 @@ for file in files:
                                 N_sentences = 3000
                             print 'N_sentences = ', N_sentences
                             random_sentences = random.sample(middle_sentences, N_sentences)
-                            d = {'input_file':file, 'author':author, 'title':title,
-                                'N_sentences':N_sentences, 'sentences':random_sentences}
-                            middle_sentences += [d]
-                            books_list += [d]
+                            for s in random_sentences:
+                                sentence_list += [{'input_file':file, 'author':author, 'title':title, 'sentence':s}]
     except:
         pass
 
-#save dataframe of books
+#make dataframe of sentences
 import pandas as pd
-cols = ['author', 'title', 'N_sentences', 'input_file', 'sentences']
-books = pd.DataFrame(books_list)[cols]
+sentences = pd.DataFrame(sentence_list)
+print 'number of parsed sentences = ', len(sentences)
 
-#preserve books having at least 1000 sentences
-idx = books['N_sentences'] > 1000
-books = books[idx]
-print 'number of parsed books = ', len(books)
-
-#save books
+#save sentences
 import pickle
-with open('books.pkl', 'wb') as fp:
-    pickle.dump(books, fp)
+with open('sentences.pkl', 'wb') as fp:
+    pickle.dump(sentences, fp)

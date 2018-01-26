@@ -35,7 +35,7 @@ this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memo
 
 3 obtain the instance's public IP address from the EC2 console, and then ssh into the instance:
 
-    ssh -i private/dl.pem ubuntu@ec2-34-216-102-120.us-west-2.compute.amazonaws.com
+    ssh -i private/dl.pem ubuntu@ec2-54-245-62-48.us-west-2.compute.amazonaws.com
 
 4 clone this repo:
 
@@ -78,7 +78,7 @@ this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memo
 
 12 browse jupyter at public_IP:8888 and log in with password=instance-id
 
-    ec2-34-216-102-120.us-west-2.compute.amazonaws.com:8888
+    ec2-54-245-62-48.us-west-2.compute.amazonaws.com:8888
 
 
 
