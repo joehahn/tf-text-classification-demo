@@ -64,10 +64,10 @@ for file in files:
             if (first_1000_chars[j] == '|'):
                 break
         sentence = first_1000_chars[0:j]
-        print 'sentence =', sentence
+        #print 'sentence =', sentence
         author, title = get_author_title(sentence)
         print 'author = ', author
-        print ' title = ', title
+        ###print ' title = ', title
         modified_text = raw_text.replace('\r\n', ' ')
         words = nltk.word_tokenize(modified_text)
         N_words = len(words)
@@ -82,7 +82,7 @@ for file in files:
             for word in chunk_of_words_list:
                 chunk_of_words_str += word + ' '
             text_chunks += [chunk_of_words_str]
-        print 'number of text_chunks = ', len(text_chunks)
+        ###print 'number of text_chunks = ', len(text_chunks)
         #insert each chunk into a dict containing author, title, file, chunk etc
         for text_chunk in text_chunks:
             chunk_list += [{'input_file':file, 'author':author, 'title':title, 'text_chunk':text_chunk}]
