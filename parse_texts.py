@@ -98,16 +98,17 @@ tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
 import re
 import random
 sentence_list = []
-for file in files:
+for file in files[0:10]:
     try:
         with open(file) as fp:
-            raw_text = fp.read()
+            raw_text = fp.read().decode('utf8')
         print '===='
         print 'file = ', file
         #drop accented characters by preserving alphanumerics plus simple punctuation 
         regex_str = '[^a-zA-Z0-9\n\.\,!\$\'`\"()#%&+-=:;<>{}\[\]]'
         filtered_text = re.sub(regex_str, ' ', raw_text.replace('\r\n', ' ')).replace('  ', ' ')
         sentences = nltk.sent_tokenize(filtered_text)
+        sentences = nltk.sent_tokenize(raw_text)
         N_sentences = len(sentences)
         if (N_sentences > 100):
             last_sentences = sentences[-5:]
