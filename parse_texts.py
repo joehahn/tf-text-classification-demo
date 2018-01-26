@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 #parse_texts.py 
 #
 #by Joe Hahn
@@ -6,7 +8,7 @@
 #
 #this hack parses Gutenberg project books stored in data folder and extracts title, author, & content
 #
-#To execute:    python ./parse_texts.py
+#To execute:    ./parse_texts.py
 
 #get list of files
 import subprocess
