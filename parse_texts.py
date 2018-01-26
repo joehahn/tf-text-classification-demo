@@ -158,6 +158,12 @@ for file in files:
                                 title = 'Sinking of the Titanic'
                             if ('eauty and the Beast' in title):
                                 title = 'Beauty and the Beast'
+                            if ('ShakespeareFirst Folio/35 Plays' in title):
+                                title = "Shakespeare's First Folio/35 Plays"
+                                author = 'Shakespeare'
+                            if ('The Memoirs of Napoleon' in title):
+                                title = 'The Memoirs of Napoleon'
+                                author = 'Louis Antoine Fauvelet de Bourrienne'
                             #print 's = ', s
                             print 'title = ', title
                             print 'author = ', author
