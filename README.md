@@ -58,8 +58,6 @@ this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memo
 
     ./parse_texts.py
 
-
-
 8 update locate database:
 
     sudo updatedb
