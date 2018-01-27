@@ -43,17 +43,13 @@ def get_author_title(sentence):
     return author, title
 
 #loop over every file and extract title & author
-import nltk
-nltk.download(info_or_id='punkt')
-import nltk.data
-tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
-import re
 import random
 chunk_list = []
 for file in files:
     try:
         with open(file) as fp:
-            raw_text = fp.read().decode('utf8')#.replace('\r\n', '|')
+            #raw_text = fp.read().decode('utf8')#.replace('\r\n', '|')
+            raw_text = fp.read().replace('\r\n', '|')
         print '===='
         print 'file = ', file
         first_1000_chars = raw_text[0:1000].replace('\r\n', '|')
@@ -67,10 +63,11 @@ for file in files:
         author, title = get_author_title(sentence)
         print 'author = ', author
         print ' title = ', title
-        modified_text = raw_text.replace('\r\n', ' ')
-        words = nltk.word_tokenize(modified_text)
+        modified_text = raw_text.replace('|', ' ')
+        words = modified_text.split(' ')
+        words = [word for word in modified_text.split(' ') if (word != '')]
         N_words = len(words)
-        #print 'N_words = ', N_words
+        print 'N_words = ', N_words
         #drop first and last 15% of sentences that contain gutenberg boilerplate text
         middle_words = words[int(0.15*N_words) : int(0.85*N_words)]
         N_words = len(middle_words)
@@ -81,7 +78,7 @@ for file in files:
             for word in chunk_of_words_list:
                 chunk_of_words_str += word + ' '
             text_chunks += [chunk_of_words_str]
-        print 'number of text_chunks = ', len(text_chunks)
+        print 'N_chunks = ', len(text_chunks)
         #insert each chunk into a dict containing author, title, file, chunk etc
         for text_chunk in text_chunks:
             chunk_list += [{'input_file':file, 'author':author, 'title':title, 'text_chunk':text_chunk}]
