@@ -30,6 +30,7 @@ def get_author_title(sentence):
             title = by_split[0]
             author = by_split[1]
         #some cleanup
+        author = author.replace('etext', '')
         author = author.strip('.')
         author = author.strip(' ')
         author = author.strip('*')
