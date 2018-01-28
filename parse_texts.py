@@ -216,4 +216,4 @@ N.head()
 #save chunks
 import pickle
 with open('chunks.pkl', 'wb') as fp:
-    pickle.dump(chunks, fp)
+    pickle.dump(chunks_filtered, fp)
