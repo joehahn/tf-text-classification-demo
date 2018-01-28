@@ -97,6 +97,123 @@ print '===='
 print 'number of parsed chunks of text = ', len(chunks)
 print 'number of parsed books = ', len(chunks.groupby('input_file').count())
 
+#apply some manual fixes to the some improperly parsed authors and titles
+idx = chunks['author'].str.contains('Proudhon')
+chunks.loc[idx, 'author'] = 'Proudhon'
+idx = chunks['author'].str.contains('Homer')
+chunks.loc[idx, 'author'] = 'Homer'
+idx = chunks['author'].str.contains('Wake, Entire')
+chunks.loc[idx, 'author'] = 'Archbishop Wake'
+chunks.loc[idx, 'title'] = 'Forbidden Gospels and Epistles, Complete'
+idx = chunks['title'].str.contains('War And Peace')
+chunks.loc[idx, 'author'] = 'Leo Tolstoy'
+idx = chunks['title'].str.contains('Nicholas Nickle')
+chunks.loc[idx, 'title'] = 'Nicholas Nickleby'
+chunks.loc[idx, 'author'] = 'Dickens'
+idx = chunks['author'].str.contains('Dickens')
+chunks.loc[idx, 'author'] = 'Dickens'
+idx = chunks['author'].str.contains('Dick,')
+chunks.loc[idx, 'title'] = 'Moby Dick'
+chunks.loc[idx, 'author'] = 'Herman Melville'
+idx = (chunks['author'] == 'Sshe')
+chunks.loc[idx, 'author'] = 'Percy Bysshe Shelley'
+chunks.loc[idx, 'title'] = 'The Complete Poetical Works of Percy Bysshe'
+idx = chunks['author'].str.contains('Maupassant')
+chunks.loc[idx, 'author'] = 'Maupassant'
+idx = chunks['author'].str.contains('Dumas')
+chunks.loc[idx, 'author'] = 'Dumas'
+idx = chunks['author'].str.contains('Constant')
+chunks.loc[idx, 'author'] = 'Constant'
+idx = chunks['title'].str.contains('Supplemental Nights')
+chunks.loc[idx, 'author'] = 'Sir Richard Francis Burton'
+idx = chunks['title'].str.contains("Plutarch'S Lives")
+chunks.loc[idx, 'title'] = "Plutarch's Lives"
+idx = chunks['author'].str.contains("Xenophon")
+chunks.loc[idx, 'author'] = "Xenophon"
+
+#count number of chunks each book has, and cumulative sum
+count = pd.DataFrame(chunks.groupby('input_file')['title'].count().sort_values())
+count.columns = ['N_chunks']
+count['N_chunks_cumulative'] = count['N_chunks'].cumsum()
+count['N_chunks_cumulative'] /= count['N_chunks_cumulative'].max()
+count = count.reset_index(level=0)
+count.head()
+
+#import plotting libraries
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import seaborn as sns
+from matplotlib import rcParams
+sns.set(font_scale=1.5, font='DejaVu Sans')
+
+#plot cumulative sum of chunk counts...selecting books having 750 to 2200 chunks would capture
+#the majority of books without causing serious class imbalance among the shorter books
+#to view this plot,navigate to it using jupyter
+fig, ax = plt.subplots(figsize=(12, 6))
+xp = count['N_chunks']
+yp = count['N_chunks_cumulative']
+p = ax.plot(xp, yp, drawstyle='steps-mid')
+p = ax.set_xlabel('number of chunks')
+p = ax.set_ylabel('fraction of books')
+p = ax.set_title('fraction of books having indicated number of chunks')
+plt.savefig('figs/chunks.png')
+
+#preserve records associated with books having 750+ chunks
+chunks_counted = chunks.merge(count, on='input_file', how='inner')
+idx = chunks_counted['N_chunks'] > 750
+chunks_counted = chunks_counted[idx]
+print 'number of records = ', len(chunks_counted)
+chunks_counted.head()
+
+#loop over each input_file and preserve random sample of each book's chunks, up to 2200 max
+chunks_sampled = pd.DataFrame()
+input_files = chunks_counted['input_file'].unique()
+for input_file in input_files: 
+    idx = (chunks_counted['input_file'] == input_file)
+    df = chunks_counted[idx]
+    Ns = len(df)
+    if (Ns > 2200):
+        df = df.sample(2200)
+    chunks_sampled = chunks_sampled.append(df, ignore_index=True)
+print 'number of records = ', len(chunks_sampled)
+chunks_sampled.head()
+
+#confirm that book contribute 750 to 2200 chunks
+N_chunks = pd.DataFrame(chunks_sampled.groupby('input_file')['input_file'].count())
+N_chunks.columns = ['N_chunks']
+N_chunks = N_chunks.reset_index(level=0)
+cols = [u'author', u'title', u'input_file', u'text_chunk']
+chunks_recounted = chunks_sampled[cols].merge(N_chunks, on='input_file', how='inner')
+cols = [u'author', u'title', u'input_file', 'N_chunks', u'text_chunk']
+print chunks_recounted['N_chunks'].min(), chunks_recounted['N_chunks'].max()
+print 'number of records = ', len(chunks_recounted)
+chunks_recounted.head()
+
+#for multi-book authors, drop all but the title having the most chunks, and add author_id
+N = pd.DataFrame(chunks_recounted.groupby(['author', 'title', 'input_file'])['text_chunk'].count()).reset_index()
+N = N.sort_values(['author', 'text_chunk'], ascending=False).drop_duplicates(['author'])
+N = N.sort_values('author')
+N = N.reset_index(drop=True)
+N['author_id'] = N.index
+print 'number of books = ', len(N)
+N.head()
+
+#join chunks_recounted to N to preserve the desired books, and randomize records
+cols = ['author', 'author_id', 'title', 'input_file', 'text_chunk']
+chunks_filtered = chunks_recounted.merge(N[['input_file', 'author_id']], on='input_file', how='inner')[cols]
+chunks_filtered = chunks_filtered.sample(frac=1)[cols]
+print 'number of records = ', len(chunks_filtered)
+chunks_filtered.head()
+
+#check the above
+N = pd.DataFrame(chunks_filtered.groupby(['author', 'title', 'input_file'])['text_chunk'].count())\
+    .reset_index().sort_values('author')
+N = N.rename(columns={'text_chunk':'N_chunks'})
+print 'number of books = ', len(N)
+N.head()
+
+
 #save sentences
 import pickle
 with open('chunks.pkl', 'wb') as fp:

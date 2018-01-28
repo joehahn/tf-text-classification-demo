@@ -35,7 +35,7 @@ this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memo
 
 3 obtain the instance's public IP address from the EC2 console, and then ssh into the instance:
 
-    ssh -i private/dl.pem ubuntu@ec2-54-202-38-6.us-west-2.compute.amazonaws.com
+    ssh -i private/dl.pem ubuntu@ec2-34-213-178-229.us-west-2.compute.amazonaws.com
 
 4 clone this repo:
 
@@ -45,11 +45,12 @@ this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memo
 5 install additional python libraries
 
     sudo pip install seaborn
-    sudo pip install gensim
+    #sudo pip install gensim
 
 6 download an ISO CD of 600 Project Gutenberg books (takes ~3 minutes), then mount:
 
-    wget http://www.gutenberg.org/files/11220/PG2003-08.ISO
+    #wget http://www.gutenberg.org/files/11220/PG2003-08.ISO  #is sometimes blocked...
+    wget http://mirrors.pglaf.org/gutenberg-iso/PG2003-08.ISO
     mkdir iso
     sudo mount -ro loop PG2003-08.ISO iso
     ls -R iso
@@ -68,7 +69,7 @@ this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memo
 
 10 get instance-id:
 
-    ec2metadata --instance-id
+    ec2metadata --instance-id   #i-035f0516fff2ac5f8
 
 11 start jupyter:
 
@@ -76,7 +77,7 @@ this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memo
 
 12 browse jupyter at public_IP:8888 and log in with password=instance-id
 
-    ec2-54-202-38-6.us-west-2.compute.amazonaws.com:8888
+    ec2-34-213-178-229.us-west-2.compute.amazonaws.com:8888
 
 
 
