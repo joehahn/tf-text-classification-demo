@@ -1,4 +1,4 @@
 private
 .ipynb_checkpoints
-data/*.zip
+data
 helper_fns.pyc

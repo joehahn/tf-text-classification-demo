@@ -213,8 +213,7 @@ N = N.rename(columns={'text_chunk':'N_chunks'})
 print 'number of books = ', len(N)
 N.head()
 
-
-#save sentences
+#save chunks
 import pickle
 with open('chunks.pkl', 'wb') as fp:
     pickle.dump(chunks, fp)
