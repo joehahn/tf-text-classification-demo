@@ -132,8 +132,6 @@ idx = chunks['author'].str.contains("Xenophon")
 chunks.loc[idx, 'author'] = "Xenophon"
 idx = chunks['author'].str.contains("Austen")
 chunks.loc[idx, 'author'] = "Austen"
-idx = chunks['author'].str.contains("In Spanish")
-chunks.loc[idx, 'author'] = "Austen"
 
 ##drop the spanish title?
 #idx = chunks['author'].str.contains("In Spanish")
