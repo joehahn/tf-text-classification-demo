@@ -8,9 +8,20 @@ git branch=master
 
 ### Intro:
 
-this will eventually become a simple demo of deep learning on aws with keras and 
-gpus...in progress...
+This demo uses an LSTM neural network for text classification. In this demo we download about
+90 books from Project Gutenberg including titles like Dracula, Moby Dick, Wuthering Heights,
+etc, with these books then exploded into about one hundred thousand chunks of text
+that are each 100 words long. Each text-chunk is then vectorized in a way that preserves
+word order, so note that a bag-of-words approach is NOT used here.
+The demo then splits these text-chunks into training and
+testing samples and then trains a long short term memory (LSTM) neural
+network to predict the author of each text-chunk in the testing sample. LSTM is useful
+when making predictions from ordered data such as text, and is why it is used here.
+The model accuracy is then assessed.
 
+This model is executed on a gpu-ready g2.2xlarge instance in the AWS cloud using the Bitfusion
+Tensorflow AMI, and the _Setup_ section below describes how to launch that instance and 
+prep the input data in the Amazon cloud, with results detailed in the _Execute_ section. 
 
 ### Setup:
 
