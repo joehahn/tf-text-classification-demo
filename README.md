@@ -138,7 +138,7 @@ The Tensorboard UI also provides this interesting graph of the neural network:
 ![](figs/tensorboard.png)
 The notebook takes about 20 minutes to execute, and plots the LSTM model classifier's
 accuracy vs training epoch:
-![](figs/tensorboard.png)
+![](figs/accuracy.png)
 and loss function versus training epoch:
 ![](figs/loss.png)
 
