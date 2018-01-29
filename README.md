@@ -97,7 +97,7 @@ since those Jupyter UIs wont let you navigate to this repo.
 
 16 start tensorboard
 
-    tensorboard --logdir=logs/
+    tensorboard --logdir=tf_logs/
 
 17 browse tensorboard at
 
