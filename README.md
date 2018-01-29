@@ -124,6 +124,14 @@ is about 20 minutes.
 
     ec2-52-11-206-236.us-west-2.compute.amazonaws.com:6006
 
+which useful when tuning the neural network parameters.
 
 
+### Execute
+
+The notebook reads the 100-word-long chunks of text that parse_texts.py extracted
+from 88 books downloaded from the Gutenberg Project. The notebook then splits
+that data into test, train, and validation samples. It then vectorizes these chunks of
+text in a way that preserves word order, and then trains a LSTM model on the test data:
+![](figs/model.png)
 
