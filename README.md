@@ -27,7 +27,7 @@ gpus...in progress...
     Launch
 
 this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memory, 
-10 Gb SSD Storage, cost=$0.76/hr
+10 Gb SSD Storage, cost=$0.74/hr
 
 2 store private ssh key tf-demo.pem in subfolder 'private' with these permissions:
 
@@ -35,7 +35,7 @@ this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memo
 
 3 obtain the instance's public IP address from the EC2 console, and then ssh into the instance:
 
-    ssh -i private/dl.pem ubuntu@ec2-34-213-178-229.us-west-2.compute.amazonaws.com
+    ssh -i private/dl.pem ubuntu@ec2-52-11-206-236.us-west-2.compute.amazonaws.com
 
 4 clone this repo:
 
@@ -47,9 +47,9 @@ this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memo
     sudo pip install seaborn
     #sudo pip install gensim
 
-6 download an ISO CD of 600 Project Gutenberg books (takes ~3 minutes), then mount:
+6 download an ISO CD of 600 Project Gutenberg books from a mirror (note that Gutenberg
+often blocks wget from an EC2 instance), then mount:
 
-    #wget http://www.gutenberg.org/files/11220/PG2003-08.ISO  #is sometimes blocked...
     wget http://mirrors.pglaf.org/gutenberg-iso/PG2003-08.ISO
     mkdir iso
     sudo mount -ro loop PG2003-08.ISO iso
@@ -67,39 +67,43 @@ this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memo
 
     c.NotebookApp.notebook_dir = u'/home/ubuntu/dl'
 
-10 get instance-id:
+10 stash instance-id:
 
-    ec2metadata --instance-id   #i-035f0516fff2ac5f8
+    echo $(ec2metadata --instance-id) > instance-id
+    cat instance-id
 
-11 start jupyter:
+11 kill the jupyter processes originally launched by this bitfusion AMI:
+
+    ps -aux | grep jupyter
+    sudo kill -9 XXXX
+
+since those Jupyter UIs wont let you navigate to this repo.
+
+12 then start jupyter:
 
     jupyter notebook
 
-12 browse jupyter at public_IP:8888 and log in with password=instance-id
+13 browse jupyter at public_IP:8888 and log in with password=instance-id
 
-    ec2-34-213-178-229.us-west-2.compute.amazonaws.com:8888
-
-
+    ec2-52-11-206-236.us-west-2.compute.amazonaws.com:8888
 
 
+14 use dl.ipynb notebook to train tf model to do text classification
 
-8 Train a CNN on CIFAR-10 images:
 
-    cd ~/tensorflow-models/tutorials/image/cifar10
-    python ./cifar10_multi_gpu_train.py
+15 Monitor GPU usage:
 
-9 start tensorboard:
+    watch -n0.1 nvidia-smi
 
-    cd ~/tensorflow-models/tutorials/image/cifar10
-    tensorboard --logdir .
+16 start tensorboard
 
-then browse
+    tensorboard --logdir=logs/
 
-    ec2-54-202-38-6.us-west-2.compute.amazonaws.com:6006
+17 browse tensorboard at
 
-and log in with password=instance-id
+    ec2-52-11-206-236.us-west-2.compute.amazonaws.com:6006
 
-10 Monitor GPU usage:
+18 Monitor GPU usage:
 
     watch -n0.1 nvidia-smi
 
