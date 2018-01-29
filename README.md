@@ -135,7 +135,7 @@ that data into test, train, and validation samples. It then vectorizes these chu
 text in a way that preserves word order, and then trains a LSTM model on the test data:
 ![](figs/model.png)
 Tensorboard also provides this interesting graph of the neural network:
-![](figs/graph_run=1517251277.png)
+![](figs/tensorboard.png)
 and...
 
 
