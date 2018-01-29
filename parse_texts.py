@@ -137,7 +137,7 @@ chunks.loc[idx, 'author'] = "Austen"
 
 ##drop the spanish title?
 #idx = chunks['author'].str.contains("In Spanish")
-#chunks = chunks[~idx]
+#chunks = chunks[~idx] 
 
 #count number of chunks each book has, and cumulative sum
 count = pd.DataFrame(chunks.groupby('input_file')['title'].count().sort_values())
