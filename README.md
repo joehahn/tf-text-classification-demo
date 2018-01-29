@@ -134,8 +134,12 @@ from 88 books downloaded from the Gutenberg Project. The notebook then splits
 that data into test, train, and validation samples. It then vectorizes these chunks of
 text in a way that preserves word order, and then trains a LSTM model on the test data:
 ![](figs/model.png)
-Tensorboard also provides this interesting graph of the neural network:
+The Tensorboard UI also provides this interesting graph of the neural network:
 ![](figs/tensorboard.png)
-and...
+The notebook takes about 20 minutes to execute, and plots the LSTM model classifier's
+accuracy vs training epoch:
+![](figs/tensorboard.png)
+and loss function versus training epoch:
+![](figs/loss.png)
 
 
