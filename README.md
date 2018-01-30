@@ -34,24 +34,24 @@ ahead to the _Execute_ section where results are also presented.
     security group settings:
         set SSH and TCP entries to have Source=My IP         #this permits ssh and jupyter
         add custom TCP rule, port=6006, Source=My IP         #this permits tensorboard
-    create keypair with name=dl
+    create keypair with name=tf_demo
     Launch
 
 this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memory, 
 10 Gb SSD Storage at a cost of $0.74/hr.
 
-2 The above also creates private ssh key named dl.pem that should be stored in the 'private'
+2 The above also creates private ssh key named tf_demo.pem that should be stored in the 'private'
 folder with these permissions:
 
-    chmod 400 private/dl.pem
+    chmod 400 private/tf_demo.pem
 
 3 Obtain the instance's public IP address from the EC2 console, and then ssh into the instance:
 
-    ssh -i private/dl.pem ubuntu@ec2-52-11-206-236.us-west-2.compute.amazonaws.com
+    ssh -i private/tf_demo.pem ubuntu@ec2-52-11-206-236.us-west-2.compute.amazonaws.com
 
 4 Clone this repo to the instance:
 
-    git clone https://github.com/joehahn/dl.git
+    git clone https://github.com/joehahn/tf-text-classification-demo.git
     cd dl
 
 5 Install additional python library:
@@ -108,9 +108,9 @@ since Bitfusion's Jupyter wont let you navigate to this repo.
     ec2-52-11-206-236.us-west-2.compute.amazonaws.com:8888
 
 
-14 Navigate to the dl.ipynb Jupyter notebook and click Kernel > Run to
+14 Navigate to the tf-text-classification.ipynb Jupyter notebook and click Kernel > Run to
 read the text-chunks and to train the LSTM model on that data. Execution time
-is about 20 minutes.
+is about 40 minutes.
 
 15 Monitor GPU usage:
 
