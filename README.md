@@ -103,7 +103,7 @@ instance later):
     ec2-54-149-96-48.us-west-2.compute.amazonaws.com:8888
 
 
-13 Navigate to the tf-text-classification.ipynb Jupyter notebook and click Kernel > Run to
+13 Navigate to the tf-text-classification.ipynb Jupyter notebook and click Kernel > Run All to
 read the text-chunks and to train the LSTM model on that data. Execution time
 is about 40 minutes.
 
