@@ -83,7 +83,7 @@ corrected here
 
 9 Now prep Jupyter by changing this line in ~/.jupyter/jupyter_notebook_config.py:
 
-    c.NotebookApp.notebook_dir = u'/home/ubuntu/dl'
+    c.NotebookApp.notebook_dir = u'/home/ubuntu/tf-text-classification-demo'
 
 which will allow Jupyter to navigate to this repo.
 
