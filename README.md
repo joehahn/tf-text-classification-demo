@@ -153,8 +153,8 @@ set aside for testing, and the model accuracy versus author is:
 ![](figs/accuracy_vs_author.png)
 The following replots the above but versus title rather than author, with only
 the leftmost aka high-accuracy end being shown.
-Note that this model can predict with 100% accuracy the authors of those text-chunks 
-that were pulled from the one Spanish and two French books in this sample.
+Note that this model can predict with 100% accuracy the authors of those text samples 
+that were extracted from the three books that are in their original Spanish and French:
 ![](figs/accuracy_vs_title-high.png)
 The plot below shows results for the rightmost lower-accuracy books; this classifier
 appears to be less somewhat successful at identifying the authors of non-fiction text-chunks:
