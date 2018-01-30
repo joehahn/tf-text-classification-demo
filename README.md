@@ -124,7 +124,7 @@ is about 20 minutes.
 
     ec2-52-11-206-236.us-west-2.compute.amazonaws.com:6006
 
-which useful when tuning the neural network parameters.
+which is useful when tuning the neural network parameters.
 
 
 ### Execute
@@ -132,7 +132,8 @@ which useful when tuning the neural network parameters.
 The notebook reads the 100-word-long chunks of text that parse_texts.py extracted
 from 88 books downloaded from the Gutenberg Project. The notebook then splits
 that data into test, train, and validation samples. It then vectorizes these chunks of
-text in a way that preserves word order, and then trains a LSTM model on the test data:
+text in a way that preserves word order, and then trains the following
+LSTM model on the test data:
 ![](figs/model.png)
 The Tensorboard UI also provides this interesting graph of the neural network:
 ![](figs/tensorboard.png)
@@ -141,8 +142,12 @@ accuracy vs training epoch:
 ![](figs/accuracy.png)
 and loss function versus training epoch:
 ![](figs/loss.png)
-That the model achieves 100% accuracy in predicting the authors of the
-training text-chunks yet only 75% accuracy in predicting the authors
-of the validation text-chunks tells us that this model suffers from some degree of
-overfitting.
+Note that the model claims 100% accuracy in predicting the authors of the
+training text-chunks yet only 80% accuracy in predicting the authors
+of the validation text-chunks, so this model suffers from some degree of
+overfitting despite several hours of tweaking and rerunning.
+The LSTM model is then used to predict the authors of those text-chunks that were
+set aside for testing, and the model accuracy versus author is:
+![](accuracy_vs_author.png)
+and...
 
