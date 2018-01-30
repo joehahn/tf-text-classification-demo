@@ -141,5 +141,8 @@ accuracy vs training epoch:
 ![](figs/accuracy.png)
 and loss function versus training epoch:
 ![](figs/loss.png)
-
+That the model achieves 100% accuracy in predicting the authors of the
+training text-chunks yet only 75% accuracy in predicting the authors
+of the validation text-chunks tells us that this model suffers from some degree of
+overfitting.
 
