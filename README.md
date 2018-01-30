@@ -120,7 +120,7 @@ is about 20 minutes.
 
     tensorboard --logdir=tf_logs/
 
-17 And then browse tensorboard UI at
+17 And then browse the tensorboard UI at
 
     ec2-52-11-206-236.us-west-2.compute.amazonaws.com:6006
 
@@ -132,8 +132,8 @@ which is useful when tuning the neural network parameters.
 The notebook reads the 100-word-long chunks of text that parse_texts.py extracted
 from 88 books downloaded from the Gutenberg Project. The notebook then splits
 that data into test, train, and validation samples. It then vectorizes these chunks of
-text in a way that preserves word order, and then trains the following
-LSTM model on the test data:
+text in a way that preserves word order, and then fits the following
+LSTM model on the training data:
 ![](figs/model.png)
 The Tensorboard UI also provides this interesting graph of the neural network:
 ![](figs/tensorboard.png)
