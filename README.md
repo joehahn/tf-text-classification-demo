@@ -157,7 +157,7 @@ that were pulled from the one Spanish and two French books in this sample.
 The plot below shows results for the rightmost lower-accuracy books; this classifier
 appears to be less somewhat successful at identifying the authors of non-fiction text-chunks:
 ![](figs/accuracy_vs_title-low.png)
-The most problematic book, Junior Classics, is actually a collection of stories by
+The most problematic book, Junior Classics by `Various', is actually a collection of stories by
 about 50 different authors. Despite the many opportunity for confusion, this classifier
 was still able to correctly flag the author as 'Various' for about 50% of text-chunks pulled
 from this particular book. 
