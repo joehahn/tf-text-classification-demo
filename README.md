@@ -112,7 +112,7 @@ since Bitfusion's Jupyter wont let you navigate to this repo.
 read the text-chunks and to train the LSTM model on that data. Execution time
 is about 20 minutes.
 
-15 You can monitor GPU usage:
+15 Monitor GPU usage:
 
     watch -n0.1 nvidia-smi
 
