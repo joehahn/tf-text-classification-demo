@@ -154,7 +154,7 @@ the leftmost aka high-accuracy end being shown.
 Note that this model can predict with near 100% accuracy the authors of those text-chunks 
 that were pulled from the one Spanish and two French books in this sample.
 ![](figs/accuracy_vs_title-high.png)
-The plot below shows results for the leftmost low-accuracy books; this classifier
+The plot below shows results for the rightmost lower-accuracy books; this classifier
 appears to be less successful at indentifying the authors of non-fiction text-chunks.
 ![](figs/accuracy_vs_title-low.png)
 The most problematic book, Junior Classics, is actually a collection of stories by
