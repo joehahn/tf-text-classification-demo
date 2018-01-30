@@ -47,7 +47,7 @@ folder with these permissions:
 
 3 Obtain the instance's public IP address from the EC2 console, and then ssh into the instance:
 
-    ssh -i private/tf_demo.pem ubuntu@ec2-52-11-206-236.us-west-2.compute.amazonaws.com
+    ssh -i private/tf_demo.pem ubuntu@ec2-54-149-96-48.us-west-2.compute.amazonaws.com
 
 4 Clone this repo to the instance:
 
@@ -106,7 +106,7 @@ instance later):
 
 13 and browse jupyter at public_IP:8888 and log in with password=instance-id
 
-    ec2-52-11-206-236.us-west-2.compute.amazonaws.com:8888
+    ec2-54-149-96-48.us-west-2.compute.amazonaws.com:8888
 
 
 14 Navigate to the tf-text-classification.ipynb Jupyter notebook and click Kernel > Run to
@@ -123,7 +123,7 @@ is about 40 minutes.
 
 17 And then browse the tensorboard UI at
 
-    ec2-52-11-206-236.us-west-2.compute.amazonaws.com:6006
+    ec2-54-149-96-48.us-west-2.compute.amazonaws.com:6006
 
 which is useful when tuning the neural network parameters.
 
