@@ -151,11 +151,19 @@ set aside for testing, and the model accuracy versus author is:
 ![](figs/accuracy_vs_author.png)
 The following replots the above but versus title rather than author, with only
 the leftmost aka high-accuracy end being shown.
-Note that the model can predict with near 100% accuracy the authors of text-chunks 
+Note that this model can predict with near 100% accuracy the authors of those text-chunks 
 that were pulled from the one Spanish and two French books in this sample.
 ![](figs/accuracy_vs_title-high.png)
-And ...
+The plot below shows results for the leftmost low-accuracy books; this classifier
+appears to be less successful at indentifying the authors of non-fiction text-chunks.
 ![](figs/accuracy_vs_title-low.png)
+The most problematic book, Junior Classics, is actually a collection of stories by
+about 50 different authors; despite the many opportunity for confusion the classifier
+was still able to correctly flag the author as 'Various' for about 50% of text-chunks pulled
+from this book. 
 
-from the one Spanish
-
+Lastly, this plot shows the classifier's accuracy versus the number of text-chunks, from 400
+to 1400, that pulled from each of the 88 different books and used to train this classifier:
+![](figs/accuracy_vs_Nchunks.png)
+Evidently this model is quite insensitive to the training sample's class imbalance, which for
+some books is a factor of almost 3.
