@@ -1,4 +1,4 @@
-# dl
+# tf-text-classification-demo
 
 by Joe Hahn,<br />
 jmh.datasciences@gmail.com,<br />
