@@ -85,7 +85,7 @@ corrected here
 
     c.NotebookApp.notebook_dir = u'/home/ubuntu/dl'
 
-which will allow you to use Jupyter to navigate to this repo.
+which will allow Jupyter to navigate to this repo.
 
 10 Kill the jupyter processes that was originally launched by this bitfusion AMI:
 
