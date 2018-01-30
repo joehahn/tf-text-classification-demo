@@ -156,7 +156,7 @@ appears to be somewhat less successful at identifying the authors of non-fiction
 The two most problematic book, Junior Classics and National Epics, are
 actually collections of stories by 20-50 different authors. Despite the many
 opportunities for confusion, this classifier
-was still able to correctly ID the collecton author for about 50% of the
+was still able to correctly ID the collection author for about 50% of the
 text-chunks drawn from these books, likely because the stories
 in each book had common themes eg (herioc stories and classical stories).
 
