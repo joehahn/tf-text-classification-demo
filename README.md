@@ -148,6 +148,6 @@ of the validation text-chunks, so this model suffers from some degree of
 overfitting despite several hours of tweaking and rerunning.
 The LSTM model is then used to predict the authors of those text-chunks that were
 set aside for testing, and the model accuracy versus author is:
-![](accuracy_vs_author.png)
+![](figs/accuracy_vs_author.png)
 and...
 
