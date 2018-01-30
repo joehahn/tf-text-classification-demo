@@ -9,7 +9,7 @@ git branch=master
 ### Intro:
 
 This demo uses an LSTM neural network for text classification. Begin by downloading about
-90 books from Project Gutenberg including titles like Dracula, Moby Dick, Wuthering Heights,
+90 books from Project Gutenberg having titles like Dracula, Moby Dick, Wuthering Heights,
 etc, with these books then exploded into about one hundred thousand chunks of text
 that are each 100 words long. Each text-chunk is then vectorized in a way that preserves
 word order, so note that a bag-of-words approach is NOT used here.
@@ -40,7 +40,7 @@ ahead to the _Execute_ section where results are also presented.
 this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memory, 
 10 Gb SSD Storage at a cost of $0.74/hr.
 
-2 The above creates private ssh key named tf-demo.pem that you can store in the 'private'
+2 The above also creates private ssh key named dl.pem that should be stored in the 'private'
 folder with these permissions:
 
     chmod 400 private/dl.pem
