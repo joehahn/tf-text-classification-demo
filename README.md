@@ -155,6 +155,7 @@ Note that the model can predict with near 100% accuracy the authors of text-chun
 that were pulled from the one Spanish and two French books in this sample.
 ![](figs/accuracy_vs_title-high.png)
 And ...
+![](figs/accuracy_vs_title-low.png)
 
 from the one Spanish
 
