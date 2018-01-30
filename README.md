@@ -158,7 +158,7 @@ actually collections of stories by 20-50 different authors. Despite the many
 opportunities for confusion, this classifier
 was still able to correctly ID the collection author for about 50% of the
 text-chunks drawn from these books, likely because the stories
-in each book had common themes eg (herioc stories and classical stories).
+in each book had common themes (eg herioc stories and classical stories).
 
 Lastly, this plot shows the classifier's accuracy versus the number of text-chunks, from 400
 to 1400, that were pulled from the 88 different books and used to train this classifier:
