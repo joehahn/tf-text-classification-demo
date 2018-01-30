@@ -135,7 +135,7 @@ that data into test, train, and validation samples. It then vectorizes these chu
 text in a way that preserves word order, and then fits the following
 LSTM model on the training data:
 ![](figs/model.png)
-The Tensorboard UI also provides this interesting graph of the neural network:
+The Tensorboard UI also provides this interesting graph of the resulting neural network:
 ![](figs/tensorboard.png)
 The notebook takes about 20 minutes to execute, and plots the LSTM model classifier's
 accuracy vs training epoch:
