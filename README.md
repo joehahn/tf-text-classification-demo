@@ -137,7 +137,7 @@ LSTM model on the training data:
 ![](figs/model.png)
 The Tensorboard UI also provides this interesting graph of the resulting neural network:
 ![](figs/tensorboard.png)
-The notebook takes about 20 minutes to execute, and plots the LSTM model classifier's
+The notebook takes about 40 minutes to train the nextwork, and then plots the LSTM model classifier's
 accuracy vs training epoch:
 ![](figs/accuracy.png)
 and loss function versus training epoch:
