@@ -52,7 +52,7 @@ folder with these permissions:
 4 Clone this repo to the instance:
 
     git clone https://github.com/joehahn/tf-text-classification-demo.git
-    cd dl
+    cd tf-text-classification-demo
 
 5 Install additional python library:
 
@@ -70,7 +70,7 @@ often blocks downloads to an EC2 instance), then mount:
 
     ./parse_texts.py
 
-this admittedly unsophisticated script attempts to extract the author and title from each
+this rather unsophisticated script attempts to extract the author and title from each
 Gutenberg book (with success ~50% of the time). For each book having a known author and
 title, the script explodes the book into 100-word-long chunks of text, and preserves
 text-chunks from those books that are at least 750 chunks long. If however a book is longer
