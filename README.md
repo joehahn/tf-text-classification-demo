@@ -40,8 +40,8 @@ ahead to the _Execute_ section where results are also presented.
 this instance provides 26 ECUs, 8 vCPUs, 2.6 GHz, Intel Xeon E5-2670, 15 Gb memory, 
 10 Gb SSD Storage at a cost of $0.74/hr.
 
-2 The above creates private ssh key named tf-demo.pem that you should store subfolder 'private'
-with these permissions:
+2 The above creates private ssh key named tf-demo.pem that you can store in the 'private'
+folder with these permissions:
 
     chmod 400 private/dl.pem
 
@@ -59,7 +59,7 @@ with these permissions:
     sudo pip install seaborn
 
 6 Download a CD of 600 Project Gutenberg books from a mirror (since Gutenberg
-often blocks downloads from an EC2 instance), then mount:
+often blocks downloads to an EC2 instance), then mount:
 
     wget http://mirrors.pglaf.org/gutenberg-iso/PG2003-08.ISO
     mkdir iso
@@ -76,7 +76,7 @@ title, the script explodes the book into 100-word-long chunks of text, and prese
 text-chunks from those books that are at least 750 chunks long. If however a book is longer
 than 2200 chunks, only a random selection of 2200 chunks is preserved. Also if an author
 has multiple books in this sample, only the longest book is preserved. This results in a
-a sample of about 100,000 text-records that are extracted from 88 distinct books, with
+sample of about 100,000 text-records that are extracted from 88 distinct books, with
 each book contributing anywhere between 750 and 2200 records each. So the input sample
 does suffer from a modest degree of class imbalance, and that class imbalance is not
 corrected here
@@ -85,19 +85,19 @@ corrected here
 
     c.NotebookApp.notebook_dir = u'/home/ubuntu/dl'
 
-this allows you to use Jupyter to navigate to this repo.
+to allows you to use Jupyter to navigate to this repo.
 
-10 Stash the instance-id:
-
-    echo $(ec2metadata --instance-id) > instance-id
-    cat instance-id
-
-11 Kill the jupyter processes that was originally launched by this bitfusion AMI:
+10 Kill the jupyter processes that was originally launched by this bitfusion AMI:
 
     ps -aux | grep jupyter
     sudo kill -9 XXXX
 
 since Bitfusion's Jupyter wont let you navigate to this repo.
+
+11 Stash the instance-id:
+
+    echo $(ec2metadata --instance-id) > instance-id
+    cat instance-id
 
 12 Then start jupyter:
 
