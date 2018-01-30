@@ -94,8 +94,8 @@ which will allow Jupyter to navigate to this repo.
 
 since Bitfusion's Jupyter wont let you navigate to this repo.
 
-11 Stash the instance-id (you will need this if you happen to stop and then restart this
-instance):
+11 Stash the instance-id (you will need this if you happen to restart this
+instance later):
 
     echo $(ec2metadata --instance-id) > instance-id
     cat instance-id
