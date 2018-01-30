@@ -22,9 +22,9 @@ Model accuracy is then assessed.
 ### Setup:
 
 This model is executed on a gpu-ready g2.2xlarge instance in the Amazon cloud using the Bitfusion
-Tensorflow AMI, and this section of this README details how to launch that instance and
-then prep the input data in the Amazon cloud. If uninterested in such details, skip
-ahead to the _Execute_ section where results are presented 
+Tensorflow AMI, and this section details how to launch that instance in the AWS cloud and
+prep the input data. But if uninterested in such details, skip
+ahead to the _Execute_ section where results are also presented.
 
 1 Launch a g2.2xl EC2 instance in AWS using these settings:
 
