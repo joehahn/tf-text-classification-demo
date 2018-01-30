@@ -139,10 +139,10 @@ LSTM model on the training data:
 The Tensorboard UI also provides this interesting graph of the resulting neural network:
 ![](figs/tensorboard.png)
 The notebook takes about 40 minutes to train the nextwork, and then plots the LSTM model classifier's
-accuracy vs training epoch:
-![](figs/accuracy.png)
-and loss function versus training epoch:
+loss function vs training epoch:
 ![](figs/loss.png)
+and accuracy:
+![](figs/accuracy.png)
 Note that the model claims 100% accuracy when predicting the authors of the
 training text-chunks, yet it only achieves 80% accuracy when predicting the authors
 of the validation text-chunks, so this model suffers from some degree of
