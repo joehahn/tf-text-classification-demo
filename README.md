@@ -142,8 +142,8 @@ accuracy vs training epoch:
 ![](figs/accuracy.png)
 and loss function versus training epoch:
 ![](figs/loss.png)
-Note that the model claims 100% accuracy in predicting the authors of the
-training text-chunks yet only 80% accuracy in predicting the authors
+Note that the model claims 100% accuracy when predicting the authors of the
+training text-chunks, yet it only achieves 80% accuracy when predicting the authors
 of the validation text-chunks, so this model suffers from some degree of
 overfitting despite several hours of tweaking and rerunning.
 The LSTM model is then used to predict the authors of those text-chunks that were
