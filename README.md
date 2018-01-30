@@ -19,12 +19,12 @@ network to predict the authors of the testing text-chunks. LSTM is useful
 when making predictions from ordered data such as text, and is why it is used here.
 Model accuracy is then assessed.
 
-This model is executed on a gpu-ready g2.2xlarge instance in the AWS cloud using the Bitfusion
-Tensorflow AMI, and the _Setup_ section below describes how to launch that instance and 
-prep the input data in the Amazon cloud, with results detailed in the _Execute_ section. 
-
 ### Setup:
 
+This model is executed on a gpu-ready g2.2xlarge instance in the Amazon cloud using the Bitfusion
+Tensorflow AMI, and this section of this README details how to launch that instance and
+then prep the input data in the Amazon cloud. If uninterested in such details, skip
+ahead to the _Execute_ section where results are presented 
 
 1 Launch a g2.2xl EC2 instance in AWS using these settings:
 
