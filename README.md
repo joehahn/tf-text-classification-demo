@@ -153,10 +153,12 @@ that were extracted from the three books that are in their original Spanish and 
 The plot below shows results for the rightmost lower-accuracy books; this classifier
 appears to be somewhat less successful at identifying the authors of non-fiction text-chunks:
 ![](figs/accuracy_vs_title-low.png)
-The most problematic book, Junior Classics by 'Various', is actually a collection of stories by
-about 50 different authors. Despite the many opportunity for confusion, this classifier
-was still able to correctly flag the author as 'Various' for about 50% of text-chunks pulled
-from this particular book. 
+The two most problematic book, Junior Classics and National Epics, are
+actually collections of stories by 20-50 different authors. Despite the many
+opportunities for confusion, this classifier
+was still able to correctly ID the correct author of these volumes for about 50% of the
+text-chunks, likely because the stories in each book had common themes
+eg (herioc stories and classical stories).
 
 Lastly, this plot shows the classifier's accuracy versus the number of text-chunks, from 400
 to 1400, that were pulled from the 88 different books and used to train this classifier:
