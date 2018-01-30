@@ -149,5 +149,11 @@ overfitting despite several hours of tweaking and rerunning.
 The LSTM model is then used to predict the authors of those text-chunks that were
 set aside for testing, and the model accuracy versus author is:
 ![](figs/accuracy_vs_author.png)
-and...
+The following replots the above but versus title rather than author, with only
+the leftmost aka high-accuracy end being shown
+![](figs/accuracy_vs_title-high.png)
+Note that the model can predict with near 100% accuracy the authors of text-chunks 
+that were pulled from the one Spanish and two French books in this sample.
+
+from the one Spanish
 
