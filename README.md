@@ -166,4 +166,4 @@ Lastly, this plot shows the classifier's accuracy versus the number of text-chun
 to 1400, that were pulled from the 88 different books and used to train this classifier:
 ![](figs/accuracy_vs_Nchunks.png)
 Evidently this model is quite insensitive to the training sample's class imbalance, which for
-some books is a factor of almost 3.
+some books is a factor of 3.
