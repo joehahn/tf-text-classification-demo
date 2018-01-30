@@ -155,12 +155,12 @@ Note that this model can predict with near 100% accuracy the authors of those te
 that were pulled from the one Spanish and two French books in this sample.
 ![](figs/accuracy_vs_title-high.png)
 The plot below shows results for the rightmost lower-accuracy books; this classifier
-appears to be less somewhat successful at identifying the authors of non-fiction text-chunks.
+appears to be less somewhat successful at identifying the authors of non-fiction text-chunks:
 ![](figs/accuracy_vs_title-low.png)
 The most problematic book, Junior Classics, is actually a collection of stories by
-about 50 different authors; despite the many opportunity for confusion the classifier
+about 50 different authors. Despite the many opportunity for confusion, this classifier
 was still able to correctly flag the author as 'Various' for about 50% of text-chunks pulled
-from this book. 
+from this particular book. 
 
 Lastly, this plot shows the classifier's accuracy versus the number of text-chunks, from 400
 to 1400, that pulled from each of the 88 different books and used to train this classifier:
