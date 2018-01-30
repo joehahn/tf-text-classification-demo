@@ -145,8 +145,9 @@ and accuracy:
 ![](figs/accuracy.png)
 Note that the model claims 100% accuracy when predicting the authors of the
 training text-chunks, yet it only achieves 80% accuracy when predicting the authors
-of the validation text-chunks, so this model suffers from some degree of
-overfitting despite several hours of tweaking and rerunning.
+of the validation text-chunks, so this model still suffers from some degree of
+overfitting despite having investing several hours tweaking network parameters.
+
 The LSTM model is then used to predict the authors of those text-chunks that were
 set aside for testing, and the model accuracy versus author is:
 ![](figs/accuracy_vs_author.png)
