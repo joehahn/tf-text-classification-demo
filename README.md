@@ -30,7 +30,7 @@ ahead to the _Execute_ section where results are presented.
 
     EC2 > launch instance > Community AMIs
     search for 'Bitfusion Ubuntu TensorFlow' > g2.2xlarge
-    set tag Name=tf-demo
+    set tag Name=tf_demo
     security group settings:
         set SSH and TCP entries to have Source=My IP         #this permits ssh and jupyter
         add custom TCP rule, port=6006, Source=My IP         #this permits tensorboard
