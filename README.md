@@ -81,47 +81,41 @@ each book contributing anywhere between 750 and 2200 records each. So the input 
 does suffer from a modest degree of class imbalance, and that class imbalance is not
 corrected here
 
-9 Now prep Jupyter by changing this line in ~/.jupyter/jupyter_notebook_config.py:
-
-    c.NotebookApp.notebook_dir = u'/home/ubuntu/tf-text-classification-demo'
-
-which will allow Jupyter to navigate to this repo.
-
-10 Kill the jupyter processes that was originally launched by this bitfusion AMI:
+9 Kill the jupyter processes that was originally launched by this bitfusion AMI:
 
     ps -aux | grep jupyter
     sudo kill -9 XXXX
 
 since Bitfusion's Jupyter wont let you navigate to this repo.
 
-11 Stash the instance-id (you will need this if you happen to restart this
+10 Stash the instance-id (you will need this if you happen to restart this
 instance later):
 
-    echo $(ec2metadata --instance-id) > instance-id
-    cat instance-id
+    echo $(ec2metadata --instance-id) > ~/instance-id
+    cat ~/instance-id
 
-12 Then start jupyter:
+11 Then start jupyter:
 
     jupyter notebook
 
-13 and browse jupyter at public_IP:8888 and log in with password=instance-id
+12 and browse jupyter at public_IP:8888 and log in with password=instance-id
 
     ec2-54-149-96-48.us-west-2.compute.amazonaws.com:8888
 
 
-14 Navigate to the tf-text-classification.ipynb Jupyter notebook and click Kernel > Run to
+13 Navigate to the tf-text-classification.ipynb Jupyter notebook and click Kernel > Run to
 read the text-chunks and to train the LSTM model on that data. Execution time
 is about 40 minutes.
 
-15 Monitor GPU usage:
+14 Monitor GPU usage:
 
     watch -n0.1 nvidia-smi
 
-16 Start tensorboard via
+15 Start tensorboard via
 
     tensorboard --logdir=tf_logs/
 
-17 And then browse the tensorboard UI at
+16 And then browse the tensorboard UI at
 
     ec2-54-149-96-48.us-west-2.compute.amazonaws.com:6006
 
