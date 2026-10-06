@@ -1,7 +1,7 @@
 # tf-text-classification-demo
 
 by Joe Hahn,<br />
-jmh.datasciences@gmail.com,<br />
+joe.hahn@jmh-datasciences.com,<br />
 16 January 2018<br />
 git branch=master
 
